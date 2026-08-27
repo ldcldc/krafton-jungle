@@ -34,6 +34,22 @@ def is_palindrome(s):
     Returns:
         bool: 회문이면 True, 아니면 False
     """
+
+    s = s.lower()
+
+    s_alnum = ""
+    for i in range(len(s)):
+        if  s[i].isalnum():
+            s_alnum += s[i]
+    s_alnum = s_alnum.lower()
+
+#    s_alnum = "".join(char for char in s if char.isalnum())
+
+    #print({s_alnum})
+
+    return s_alnum == s_alnum[::-1]
+
+
     # TODO: 알파벳과 숫자만 남기고 소문자로 변환하세요
     # 힌트: isalnum() 메서드와 lower() 메서드 사용
     pass
