@@ -37,6 +37,19 @@ def is_valid_parentheses(s):
     """
     stack = []
     
+    for c in s:
+        if c == '(':
+            stack.append('(')
+        elif c == ')':
+            if not stack:
+                return False
+            stack.pop()
+        else:
+            return False
+    return not stack
+
+    
+    
     # TODO: 문자열의 각 문자를 순회
     ## : 여는 괄호 '('면 스택에 추가
     ## : 닫는 괄호 ')'면

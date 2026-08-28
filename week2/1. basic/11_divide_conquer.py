@@ -40,18 +40,18 @@ def find_max_divide_conquer(arr, l, r):
     Returns:
         최댓값
     """      
+    
     m = (l + r) // 2
     if l == r:
         return arr[l]
     elif l + 1 == r:
         return bigger(arr[l],arr[r])
     
-    return find_max_divide_conquer(arr, l, m-1) \
-        if find_max_divide_conquer(arr, l, m-1) > find_max_divide_conquer(arr, m, r) \
-            else find_max_divide_conquer(arr, m, r)
-            
-    # bigger(find_max_divide_conquer(arr, l, m-1), 
-    #        find_max_divide_conquer(arr, m, r))
+    left_max = find_max_divide_conquer(arr, l, m)
+    right_max = find_max_divide_conquer(arr, m+1, r)
+    
+    return bigger(left_max, right_max)
+
 
     # TODO: base case - 원소가 하나면 그 값 반환
     pass
