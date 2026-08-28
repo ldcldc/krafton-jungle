@@ -168,10 +168,9 @@ class LinkedList:
         values = []
         
         curr_node = self.head
-        while(curr_node.next):
+        while(curr_node):
             values.append(curr_node.data)
             curr_node = curr_node.next
-        values.append(curr_node.data)
         
         return values
 

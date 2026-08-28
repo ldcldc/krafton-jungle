@@ -40,14 +40,25 @@ def manage_grades(students):
     Returns:
         평균, 최고점 학생 이름, 최고점
     """
+    
+    # 0나누기 조심
+    if students:        
+        average = sum(students.values()) / len(students)
+    else:
+        average =  0
+        
+    top_score = max(students.values())
+    top_student = max(students.keys(), key=students.get)
+    
+    # 점수가 다 달라 top_student를 리스트로 안받음
+    return average, top_student, top_score
+    
     # TODO: 평균 점수 계산
     pass
     
     
     # TODO: 최고 점수 학생 찾기
     pass
-    
-    return average, top_student, top_score
 
 def find_student_score(students, name):
     """
@@ -60,6 +71,9 @@ def find_student_score(students, name):
     Returns:
         점수 (없으면 None)
     """
+    return students.get(name)
+    
+    
     # TODO: students에서 name 찾기
     pass
 
