@@ -121,8 +121,19 @@ def combinations(n: int, k: int) -> list:
     """
     result = []  # 완성된 조합을 모아 둘 곳
     
-
-
+    
+    # def backtrack_yield(start: int, current_combination: list) -> None:
+    #   if len(current_combination) == k:
+    #     yield current_combination[:]
+    #     return
+      
+    #   for num in range(start,n+1):
+    #     current_combination.append(num)
+    #     yield from backtrack_yield(num+1, current_combination)
+    #     current_combination.pop()
+    
+    # return list(backtrack_yield(1,[]))
+    
 
     def backtrack(start: int, current_combination: list) -> None:
         """
@@ -133,9 +144,7 @@ def combinations(n: int, k: int) -> list:
             current_combination: 지금까지 골라 둔 숫자들 (탐색 중)
         """
         if len(current_combination) == k:
-          temp = current_combination[:]
-          result.append(temp)
-          #print("add")
+          result.append(current_combination[:])
           return 
 
         for num in range(start, n+1):
@@ -143,9 +152,6 @@ def combinations(n: int, k: int) -> list:
           #print(current_combination)
           backtrack(num+1, current_combination)
           current_combination.pop()
-        
-        return
-        
 
         # ──────────────────────────────────────────────────────────────────
         # [Level 1] 종료 조건 (Base Case)
@@ -189,6 +195,8 @@ def combinations(n: int, k: int) -> list:
     # 처음 호출: 시작 숫자는 1, 지금까지 고른 숫자는 비어 있음
     backtrack(1, [])
     return result
+  
+
 
 
 # ============================================================================

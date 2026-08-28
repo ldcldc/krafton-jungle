@@ -32,7 +32,7 @@ def find_duplicates_brute_force(nums):
     n = len(nums)
     for i in range(n):
         for j in range(i+1, n):
-            if nums[i] == nums[j] and not nums[i] in duplicates:
+            if nums[i] == nums[j] and nums[i] not in duplicates:
                 duplicates.append(nums[i])
     return duplicates
     
@@ -53,9 +53,16 @@ def find_duplicates_sorting(nums):
     duplicates = []
     nums.sort()
     
+    # for i in range(1,len(nums)):
+    #     if nums[i] == nums[i-1]:
+    #         if not duplicates or duplicates[-1] != nums[i]:
+    #             duplicates.append(nums[i])
+        
+    # return duplicates    
+    
     pre = 0
     for num in nums:
-        if num == pre and not num in duplicates:
+        if num == pre and num not in duplicates:
             duplicates.append(num)
         pre = num
         
@@ -82,13 +89,17 @@ def find_duplicates_hash(nums):
             duplicates.add(num)
         else:
             seen.add(num)
+            
+    return list(duplicates)
+    # return [num for num, count in Counter(nums).items() if count > 1]
+    
     
     # TODO: 각 원소를 순회하면서
     ## 이미 seen에 있으면 duplicates에 추가
     ## 없으면 seen에 추가
     pass
     
-    return list(duplicates)
+
 
 def measure_time(func, nums, method_name):
     """실행 시간 측정 헬퍼 함수"""
@@ -123,11 +134,11 @@ if __name__ == "__main__":
     measure_time(find_duplicates_sorting, nums2, "방법2 (O(n log n))")
     measure_time(find_duplicates_hash, nums2, "방법3 (O(n))")
     
-    # result1 = find_duplicates_brute_force(nums2)
-    # result2 = find_duplicates_sorting(nums2)
-    # result3 = find_duplicates_hash(nums2)
-    #  if sorted(result1) == sorted(result2) == sorted(result3):
-    #      print('ok')
+    result1 = find_duplicates_brute_force(nums2)
+    result2 = find_duplicates_sorting(nums2)
+    result3 = find_duplicates_hash(nums2)
+    if sorted(result1) == sorted(result2) == sorted(result3):
+        print('ok')
     
     print("=== 복잡도 분석 요약 ===")
     print("방법1 - Brute Force:")
@@ -141,5 +152,3 @@ if __name__ == "__main__":
     print("방법3 - Hash:")
     print("  시간: O(n), 공간: O(n)")
     print("  특징: 가장 빠르지만 메모리 사용")
-
-
