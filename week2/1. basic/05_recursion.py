@@ -32,6 +32,14 @@ def factorial(n):
     Returns:
         n의 팩토리얼 값
     """
+    # result = 1
+    # for i in range(1,n+1):
+    #     result *= i
+    # return result
+    if n <= 1:
+        return n
+    return factorial(n-1)*n
+
     # TODO: base case를 작성하세요
     # n이 0이거나 1이면 1을 반환
     pass
@@ -49,6 +57,24 @@ def fibonacci(n):
     Returns:
         n번째 피보나치 수
     """
+    # fib = [0,1]
+    # if n < 2:
+    #     return n
+    # for i in range(2,n+1):
+    #     fib.append(fib[i-1] + fib[i-2])
+    # return fib[n]
+
+    # fib_1, fib_2 = 0, 1
+    # if n < 2:
+    #      return n
+    # for _ in range(2, n+1):
+    #     fib_1, fib_2 = fib_2, fib_1 + fib_2
+    # return fib_2
+
+    if n <= 1:
+         return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
     # TODO: base case를 작성하세요
     # n이 0이면 0, n이 1이면 1 반환
     pass

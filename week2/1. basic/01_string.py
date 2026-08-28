@@ -43,9 +43,7 @@ def is_palindrome(s):
             s_alnum += s[i]
     s_alnum = s_alnum.lower()
 
-#    s_alnum = "".join(char for char in s if char.isalnum())
-
-    #print({s_alnum})
+    #s_alnum = "".join(char for char in s if char.isalnum())
 
     return s_alnum == s_alnum[::-1]
 
