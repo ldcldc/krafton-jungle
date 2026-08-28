@@ -1,3 +1,4 @@
+import math
 """
 [정수론 - 최대공약수(GCD)와 최소공배수(LCM)]
 
@@ -34,6 +35,10 @@ def gcd(a, b):
     Returns:
         최대공약수
     """
+    if not b:
+        return a
+    return gcd(b,a%b)
+    
     # TODO: 유클리드 호제법 구현
     # base case: b가 0이면 a 반환
     # recursive를 이용 
@@ -49,6 +54,10 @@ def gcd_iterative(a, b):
     Returns:
         최대공약수
     """
+    while(b):
+        b,a = a%b,b
+    return a
+    
     # TODO: 반복문으로 구현
     # b가 0이 될 때까지 반복
     pass
@@ -63,6 +72,8 @@ def lcm(a, b):
     Returns:
         최소공배수
     """
+    return a*b//gcd_iterative(a, b)
+    
     # TODO: LCM 계산
     pass
 
@@ -77,6 +88,61 @@ def extended_gcd(a, b):
     Returns:
         (gcd, x, y) 튜플
     """
+    # i=1
+    # g = gcd(a,b)
+    # A = a/g
+    # B = b/g
+    # while 1:
+    #     if not (i*A+1)%B:
+    #         return (g,-i,(i*A+1)/B)
+    #     if not (i*A-1)%B:
+    #         return (g,i,-(i*A-1)/B)
+    
+    """
+    ax + by = g
+    bx_1 + (a%b)y_1 = g
+    bx_1 + (a-(a//b)*b)y_1 = g
+    ay_1 + b(x_1 - (a//b)*y_1) = g
+    x = y_1
+    y = x_1 - (a//b)*y_1
+    
+    ex) a= 48, b=18
+       48x + 18y = 6
+    -> 18x + 12y = 6
+    -> 12x + 6y = 6
+    -> 6x + 0y = 6
+    => (g, x, y) = (a, 1, y)(y엔 뭐넣어도 됨)
+    """
+        
+    if not b:
+        return(a,1,0)
+    g, x, y = extended_gcd(b,a%b)
+    return (g, y, x-(a//b)*y)
+    
+    
+    """
+    결국 a, b = b, a%b를 반복하면 a가 gdc가 되므로 첫 a와 b로 모든 하위a를 만들 수 있으면 됨
+    a = a*x_0 + b*y_0 (x_0 = 1, y_0 = 0)
+    b = a*x_1 + b*y_1 (x_1 = 0, y_1 = 1)
+    
+    한단계 지나면 
+    a' -> b
+    b' -> a%b = a-(a//b)*b = a*x_0 + b*y_0 - (a//b)*(a*x_1 + b*y_1)
+              = a(x_0 - (a//b)*x_1) + b(y_0 - (a//b)*y_1)
+    
+    """
+    
+    # x0, x1 = 1, 0
+    # y0, y1 = 0, 1
+    # while(b):
+    #     ab = a//b
+        
+    #     a, b = b, a%b
+        
+    #     x0, x1 = x1, x0 - ab * x1
+    #     y0, y1 = y1, y0 - ab * y1
+    # return(a, x0, y0)
+    
     # TODO: 확장 유클리드 호제법 구현
     # base case: b가 0이면 (a, 1, 0) 반환    
     # recursive case
@@ -93,6 +159,17 @@ def is_prime(n):
     Returns:
         소수이면 True, 아니면 False
     """
+    if n <= 1:
+        return False
+    elif n==2:
+        return True
+    if not n%2:
+        return False
+    for i in range(3, int(math.sqrt(n))+1,2):
+        if not n%i:
+            return False
+    return True
+    
     # TODO: 소수 판별 구현
     # n이 2보다 작으면 False
     # 2부터 sqrt(n)까지 나누어 떨어지는지 확인    
@@ -126,7 +203,7 @@ if __name__ == "__main__":
     print(f"LCM: {lcm(a, b)}")
     print("서로소(coprime): GCD가 1")
     print()
-    
+
     # 테스트 케이스 4: 확장 유클리드
     print("=== 테스트 케이스 4: 확장 유클리드 ===")
     a, b = 35, 15
@@ -143,5 +220,3 @@ if __name__ == "__main__":
     for num in test_numbers:
         result = "소수" if is_prime(num) else "합성수"
         print(f"{num}: {result}")
-
-
