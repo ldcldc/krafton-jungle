@@ -120,6 +120,9 @@ def combinations(n: int, k: int) -> list:
         모든 조합을 담은 리스트(예: [[1,2], [1,3], ...])
     """
     result = []  # 완성된 조합을 모아 둘 곳
+    
+
+
 
     def backtrack(start: int, current_combination: list) -> None:
         """
@@ -129,6 +132,20 @@ def combinations(n: int, k: int) -> list:
             start: 이번에 시도해볼 수 있는 가장 작은 숫자
             current_combination: 지금까지 골라 둔 숫자들 (탐색 중)
         """
+        if len(current_combination) == k:
+          temp = current_combination[:]
+          result.append(temp)
+          #print("add")
+          return 
+
+        for num in range(start, n+1):
+          current_combination.append(num)
+          #print(current_combination)
+          backtrack(num+1, current_combination)
+          current_combination.pop()
+        
+        return
+        
 
         # ──────────────────────────────────────────────────────────────────
         # [Level 1] 종료 조건 (Base Case)

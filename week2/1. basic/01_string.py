@@ -45,6 +45,8 @@ def is_palindrome(s):
 
     #s_alnum = "".join(char for char in s if char.isalnum())
 
+    #print({s_alnum})
+
     return s_alnum == s_alnum[::-1]
 
 
@@ -56,8 +58,6 @@ def is_palindrome(s):
     # 방법1: 문자열을 뒤집어서 비교 ([::-1] 사용)
     # 방법2: 양 끝 인덱스를 이용한 투 포인터 방식
     pass
-    
-    #return False
 
 # 테스트 케이스
 if __name__ == "__main__":
