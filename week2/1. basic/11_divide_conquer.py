@@ -22,8 +22,13 @@
 - 배열을 반으로 나누어 재귀 호출
 - 왼쪽과 오른쪽의 최댓값 중 큰 값 반환
 """
+def bigger(a,b):
+    if a>b:
+        return a
+    else:
+        return b
 
-def find_max_divide_conquer(arr, left, right):
+def find_max_divide_conquer(arr, l, r):
     """
     분할 정복으로 최댓값 찾기
     
@@ -34,7 +39,20 @@ def find_max_divide_conquer(arr, left, right):
     
     Returns:
         최댓값
-    """
+    """      
+    m = (l + r) // 2
+    if l == r:
+        return arr[l]
+    elif l + 1 == r:
+        return bigger(arr[l],arr[r])
+    
+    return find_max_divide_conquer(arr, l, m-1) \
+        if find_max_divide_conquer(arr, l, m-1) > find_max_divide_conquer(arr, m, r) \
+            else find_max_divide_conquer(arr, m, r)
+            
+    # bigger(find_max_divide_conquer(arr, l, m-1), 
+    #        find_max_divide_conquer(arr, m, r))
+
     # TODO: base case - 원소가 하나면 그 값 반환
     pass
     

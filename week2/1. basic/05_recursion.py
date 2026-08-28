@@ -37,7 +37,7 @@ def factorial(n):
     #     result *= i
     # return result
     if n <= 1:
-        return n
+        return 1
     return factorial(n-1)*n
 
     # TODO: base case를 작성하세요

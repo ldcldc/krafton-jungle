@@ -134,11 +134,11 @@ if __name__ == "__main__":
     measure_time(find_duplicates_sorting, nums2, "방법2 (O(n log n))")
     measure_time(find_duplicates_hash, nums2, "방법3 (O(n))")
     
-    result1 = find_duplicates_brute_force(nums2)
-    result2 = find_duplicates_sorting(nums2)
-    result3 = find_duplicates_hash(nums2)
-    if sorted(result1) == sorted(result2) == sorted(result3):
-        print('ok')
+    # result1 = find_duplicates_brute_force(nums2)
+    # result2 = find_duplicates_sorting(nums2)
+    # result3 = find_duplicates_hash(nums2)
+    # if sorted(result1) == sorted(result2) == sorted(result3):
+    #     print('ok')
     
     print("=== 복잡도 분석 요약 ===")
     print("방법1 - Brute Force:")
