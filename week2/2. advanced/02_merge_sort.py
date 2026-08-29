@@ -32,6 +32,31 @@ def merge(arr, left, mid, right):
         mid: 왼쪽 부분의 끝 인덱스
         right: 오른쪽 부분의 끝 인덱스
     """
+    arr_left = arr[left:mid+1]
+    arr_right = arr[mid+1:right+1]
+    l_p = r_p = 0                   #left_pointer, right_pointer
+    a_p = left                      #arr_pointer
+
+    while l_p < len(arr_left) and r_p < len(arr_right):
+        
+        if arr_left[l_p] <= arr_right[r_p]:
+            arr[a_p] = arr_left[l_p]
+            l_p += 1
+        else:
+            arr[a_p] = arr_right[r_p]
+            r_p += 1
+        a_p += 1
+
+    while l_p < len(arr_left):
+        arr[a_p] = arr_left[l_p]
+        l_p += 1
+        a_p += 1
+
+    while r_p < len(arr_right):
+        arr[a_p] = arr_right[r_p]
+        r_p += 1
+        a_p += 1
+            
     # TODO: 왼쪽과 오른쪽 부분 배열을 임시 배열로 복사
     pass
     
@@ -56,6 +81,13 @@ def merge_sort_helper(arr, left, right):
         left: 시작 인덱스
         right: 끝 인덱스
     """
+    
+    if right > left:
+        mid = (right + left) // 2
+        merge_sort_helper(arr, left, mid)
+        merge_sort_helper(arr, mid+1, right)
+        merge(arr, left, mid, right)
+        
     # TODO: base case - left가 right보다 작을 때만 정렬
     ## 중간 지점 계산
     ## 왼쪽 절반 재귀 정렬
@@ -109,5 +141,3 @@ if __name__ == "__main__":
     print(f"정렬 전: {arr4}")
     result4 = merge_sort(arr4.copy())
     print(f"정렬 후: {result4}")
-
-
