@@ -60,6 +60,66 @@ def n_queens(n: int) -> int:
     N x N 체스판에 N 개의 퀸을 서로 공격하지 않도록 배치하는 경우의 수를 반환.
     1 <= N <= 8 범위에서 동작하면 충분합니다.
     """
+    count = 0
+    
+    # cols = [0] * n
+    
+    # def place(row):
+    #   nonlocal count
+    #   if row == n:
+    #     count += 1
+    #     return
+      
+    #   for c in range(n):
+    #     for i in range(row):
+    #       if cols[i] == c or abs(cols[i] - c) == row - i:
+    #         break
+          
+    #     else:
+    #       cols[row] = c
+    #       place(row+1)
+          
+    # place(0)
+    # return count
+  
+    """
+    0,0 0,1 0,2 0,3 0,4 0,5
+    1,0 1,1 1,2 1,3 1,4 1,5
+    2,0 2,1 2,2 2,3 2,4 2,5
+    3,0 3,1 3,2 3,3 3,4 3,5
+    4,0 4,1 4,2 4,3 4,4 4,5
+    5,0 5,1 5,2 5,3 5,4 5,5
+    오른 아래 대각선으로 내려가는 (x,y)집합의 x-y는 고유하고 동일
+    왼  아래 대각선으로 내려가는 (x,y)집합의 x+y는 고유하고 동일
+    """
+    cols = set()
+    xy_minus = set() # (a - col)
+    xy_plus = set()
+    
+    def place(row):
+      nonlocal count
+      if row == n:
+        count += 1
+        return
+      
+      for c in range(n):
+        if c in cols or (row - c) in xy_plus or (row + c) in xy_minus:
+          continue
+          
+        cols.add(c)
+        xy_plus.add(row - c)
+        xy_minus.add(row + c)
+        place(row + 1)
+        cols.remove(c)
+        xy_plus.remove(row - c)
+        xy_minus.remove(row + c)
+          
+    place(0)
+    return count
+  
+  
+  
+  
     # TODO: 백트래킹으로 가능한 배치의 수를 반환하세요.
     # 권장 구조:
     #   cols = [0] * n
