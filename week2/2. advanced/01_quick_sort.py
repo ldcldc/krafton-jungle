@@ -34,39 +34,36 @@ def partition(arr, low, high):
     Returns:
         피벗의 최종 위치 인덱스
     """
+    # 양방향
+    # pivot = arr[low]
+    # i = low - 1
+    # j = high + 1
+
+    # while True:
+    #     i += 1
+    #     while arr[i] < pivot:
+    #         i += 1
+            
+    #     j -= 1
+    #     while arr[j] > pivot:
+    #         j -= 1
+
+    #     if i >= j:
+    #         return j
+            
+    #     arr[i], arr[j] = arr[j], arr[i]
+    
     pivot = arr[high]
-    i, j = low, high-1
-    
-    if i == j:
-        if arr[high] <= arr[low]:
-            arr[high],arr[low] = arr[low],arr[high]
-        print(arr,i,j)
-        return i
-    
-    
-    print(arr,i,j, pivot)
-    while(i < j):
-        #print('in while')
-        arr[i], arr[j] = arr[j], arr[i]
-        print(arr,i,j,pivot)
-        while(not pivot <= arr[i]):
-            if i == high-1:
-                break
+    i = low - 1 
+
+    for j in range(low, high):
+        if arr[j] <= pivot:
             i += 1
-            print('i++')
-        while(not pivot > arr[j]):
-            if not j:
-                break
-            j -= 1
-            print('j--')
-        print(arr,i,j,pivot)
-        
-    if j == high-1:
-        return j
-    arr[i], arr[high] = arr[high], arr[i]
-    print(arr)
-    #print('out of while')
-    return i
+            arr[i], arr[j] = arr[j], arr[i]
+            
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+    
+    return i + 1
 
     # TODO: 피벗을 선택 (일반적으로 마지막 원소)
     pass
@@ -93,16 +90,17 @@ def quick_sort_helper(arr, low, high):
         low: 시작 인덱스
         high: 끝 인덱스
     """
-    if high <= low:
-        return
+    # 양방향
+    # if high > low:
+    #     pivot_index = partition(arr, low, high)
+    #     quick_sort_helper(arr, low, pivot_index)
+    #     quick_sort_helper(arr, pivot_index + 1, high)
     
-    pivot_index = partition(arr, low, high)
-    print('left')
-    print(arr, low, pivot_index -1)
-    quick_sort_helper(arr, low, pivot_index -1)
-    print('right')
-    print(arr, pivot_index +1, high)
-    quick_sort_helper(arr, pivot_index +1, high)
+
+    if high > low:
+        pivot_index = partition(arr, low, high)
+        quick_sort_helper(arr, low, pivot_index -1)
+        quick_sort_helper(arr, pivot_index +1, high)
         
     
     
