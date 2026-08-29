@@ -37,15 +37,17 @@ def process_emergency_room(patients):
         처리된 환자 순서
     """
     heap = []
-    
-    for i in range(len(patients)):
-        heapq.heappush(heap, (patients[i][1], i, patients[i]))
     processed = []
     
-    while(heap) :
-        patient = heapq.heappop(heap)[2]
-        print(f'처리: {patient[0]} (우선순위: {patient[1]})')
-        processed.append(patient[0])
+    for i, (name, priority) in enumerate(patients):
+        heapq.heappush(heap, (priority, i, name))
+    
+    while heap:
+        priority, _, name = heapq.heappop(heap)
+        print(f'처리: {name} (우선순위: {priority})')
+        processed.append(name)
+            
+    return processed
 
             
     return processed

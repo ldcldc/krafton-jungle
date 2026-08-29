@@ -56,14 +56,16 @@
         move(k-1, via, src, dst)        # via 의 k-1개를 dst 로
 """
 
+hanoi_arr = []
 
 def hanoi_count(n: int) -> int:
     """N 개의 원반을 옮기는 데 필요한 최소 이동 횟수( = 2^N - 1) 를 반환"""
+    return (2 ** n) - 1
     # TODO: 2^N - 1 을 정수로 반환하세요.
     pass
 
-
 def hanoi_moves(n: int) -> list:
+    
     """
     N <= 20 일 때 1번 -> 3번 기둥으로 옮기는 이동 순서를 리스트로 반환.
     각 원소는 (출발기둥, 도착기둥) 튜플이며, 기둥 번호는 1/2/3 의 정수.
@@ -71,6 +73,21 @@ def hanoi_moves(n: int) -> list:
 
     예) hanoi_moves(2) == [(1, 2), (1, 3), (2, 3)]
     """
+    if n == 0 or n > 20:  
+        return []
+    
+    moves = []
+    
+    def move(n, start, goal, temp):
+        if n == 0:
+            return
+        move(n-1, start, temp, goal)
+        moves.append((start, goal))
+        move(n-1, temp, goal, start)
+    
+    move(n, 1, 3, 2)
+    return moves
+
     # TODO: N > 20 또는 N == 0 인 경우 [] 를 반환하세요.
     # TODO: 그 외에는 재귀로 이동 순서를 만들어 반환하세요.
     pass
