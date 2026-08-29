@@ -51,7 +51,7 @@ def exist_2(board, word):
             return False
         
         temp,board[i][j] = board[i][j],'visit' #방문처리
-        
+        #하나라도 true나오면 바로 뒤 무시하고 result = true
         result = search(w + 1, i +1, j) or search(w + 1, i -1, j)\
             or search(w + 1, i, j +1) or search(w + 1, i, j -1)
             
