@@ -103,7 +103,7 @@ def n_queens(n: int) -> int:
         return
       
       for c in range(n):
-        if c in cols or (row - c) in xy_plus or (row + c) in xy_minus:
+        if (c in cols) or ((row - c) in xy_plus) or ((row + c) in xy_minus):
           continue
           
         cols.add(c)
