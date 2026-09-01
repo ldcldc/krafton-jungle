@@ -1,7 +1,9 @@
 c= [3,0,6,1,5]
 
 def hIndex(citations):
+    
     n = len(citations)
+    
     if not n:
         return 0
     
