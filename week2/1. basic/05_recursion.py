@@ -72,7 +72,7 @@ def fibonacci(n):
     # return fib_2
 
     if n <= 1:
-         return n
+        return n
     return fibonacci(n-1) + fibonacci(n-2)
 
     # TODO: base case를 작성하세요

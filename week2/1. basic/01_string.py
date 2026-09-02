@@ -35,8 +35,6 @@ def is_palindrome(s):
         bool: 회문이면 True, 아니면 False
     """
 
-    s = s.lower()
-
     s_alnum = ""
     for i in range(len(s)):
         if  s[i].isalnum():
@@ -44,8 +42,6 @@ def is_palindrome(s):
     s_alnum = s_alnum.lower()
 
     #s_alnum = "".join(char for char in s if char.isalnum())
-
-    #print({s_alnum})
 
     return s_alnum == s_alnum[::-1]
 
