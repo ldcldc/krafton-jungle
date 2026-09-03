@@ -23,10 +23,7 @@
 - 왼쪽과 오른쪽의 최댓값 중 큰 값 반환
 """
 def bigger(a,b):
-    if a>b:
-        return a
-    else:
-        return b
+    return a if a>b else b
 
 def find_max_divide_conquer(arr, l, r):
     """
@@ -47,10 +44,7 @@ def find_max_divide_conquer(arr, l, r):
     elif l + 1 == r:
         return bigger(arr[l],arr[r])
     
-    left_max = find_max_divide_conquer(arr, l, m)
-    right_max = find_max_divide_conquer(arr, m+1, r)
-    
-    return bigger(left_max, right_max)
+    return bigger(find_max_divide_conquer(arr, l, m), find_max_divide_conquer(arr, m+1, r))
 
 
     # TODO: base case - 원소가 하나면 그 값 반환

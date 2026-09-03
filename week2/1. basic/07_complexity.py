@@ -60,7 +60,7 @@ def find_duplicates_sorting(nums):
         
     # return duplicates    
     
-    pre = 0
+    pre = 0         #없는수
     for num in nums:
         if num == pre and num not in duplicates:
             duplicates.append(num)
