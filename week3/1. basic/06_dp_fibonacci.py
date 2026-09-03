@@ -81,6 +81,13 @@ def fibonacci_memo(n, memo=None):
     Returns:
         n번째 피보나치 수
     """
+    fib = [0,1]
+    if n < 2:
+        return n
+    for i in range(2,n+1):
+        fib.append(fib[i-1] + fib[i-2])
+    return fib[n]
+    
     # TODO: memo가 None이면 빈 딕셔너리로 초기화
     pass
     
@@ -92,8 +99,6 @@ def fibonacci_memo(n, memo=None):
     
     # TODO: 재귀 호출하여 계산하고 memo에 저장
     pass
-    
-    return memo[n]
 
 # 테스트 케이스
 if __name__ == "__main__":

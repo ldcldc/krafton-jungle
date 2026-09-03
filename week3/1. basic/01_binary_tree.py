@@ -43,6 +43,15 @@ def preorder(root):
     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
     result = []
     
+    def reculsion(node):
+        result.append(node.value)
+        if node.left is not None:
+            reculsion(node.left)
+        if node.right is not None:
+            reculsion(node.right)
+    reculsion(root)
+    
+    return result
     # TODO: root가 None이면 빈 리스트 반환
     pass
     
@@ -54,13 +63,23 @@ def preorder(root):
     
     # TODO: 오른쪽 서브트리 순회
     pass
-    
-    return result
 
 def inorder(root):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""
     result = []
     
+    def reculsion(node):
+        
+        if node.left is not None:
+            reculsion(node.left)
+        result.append(node.value)
+        if node.right is not None:
+            reculsion(node.right)
+    reculsion(root)
+    
+    return result
+    
+    
     # TODO: root가 None이면 빈 리스트 반환
     pass
     
@@ -72,13 +91,21 @@ def inorder(root):
     
     # TODO: 오른쪽 서브트리 순회
     pass
-    
-    return result
 
 def postorder(root):
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
     result = []
     
+    def reculsion(node):
+        if node.left is not None:
+            reculsion(node.left)
+        if node.right is not None:
+            reculsion(node.right)
+        result.append(node.value)
+    reculsion(root)
+    
+    return result
+    
     # TODO: root가 None이면 빈 리스트 반환
     pass
     
@@ -90,8 +117,6 @@ def postorder(root):
     
     # TODO: 루트 값 추가
     pass
-    
-    return result
 
 # 테스트 케이스
 if __name__ == "__main__":

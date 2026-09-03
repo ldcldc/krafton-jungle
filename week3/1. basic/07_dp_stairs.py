@@ -45,6 +45,17 @@ def climb_stairs(n):
     Returns:
         n번째 계단까지 오르는 방법의 수
     """
+    dp = [0,1,2]
+    
+    if n <= 2:
+        return n
+    
+    for i in range(3,n+1):
+        dp.append(dp[i-1] + dp[i-2])
+        
+    return dp[n]
+    
+    
     # TODO: 특별한 경우 처리
     pass
     
@@ -54,8 +65,6 @@ def climb_stairs(n):
     
     # TODO: 작은 문제부터 차례로 계산
     pass
-    
-    return dp[n]
 
 # 테스트 케이스
 if __name__ == "__main__":

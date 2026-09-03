@@ -32,13 +32,34 @@ def select_meetings(meetings):
     Returns:
         (배정된 회의 개수, 선택된 회의 리스트)
     """
+    if not meetings:
+        return 0, 0
+    
+    selected = []
+    meetings = sorted(meetings, key=lambda x: x[1])
+    n = len(meetings)
+    
+    
+    def reculsion(index):
+        for i in range(index+1, n):
+            if meetings[index][1] < meetings[i][0]:
+                selected.append(meetings[i])
+                return reculsion(i) + 1
+        return 1
+    selected.append(meetings[0])
+    
+    
+    return reculsion(0), selected
+        
+    
+    
+    
+    
     # TODO: 회의가 없으면 0 반환
     pass
     
     # TODO: 종료 시간 기준으로 정렬
     pass
-    
-    selected = []
     
     # TODO: 첫 번째 회의 선택
     pass

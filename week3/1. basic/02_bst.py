@@ -50,6 +50,27 @@ def search_bst(root, target):
     Returns:
         True/False
     """
+    curr_node = root
+    while curr_node:
+        if curr_node.value > target:
+            curr_node = curr_node.left
+        elif curr_node.value < target:
+            curr_node = curr_node.right
+        else:
+            return True
+    return False
+    
+    # def reculsion(node):
+    #     if not node:
+    #         return False
+    #     if node.value == target:
+    #         return True
+    #     elif node.value > target:
+    #         return reculsion(node.left)
+    #     else:
+    #         return reculsion(node.right)
+    # return reculsion(root)
+    
     # TODO: root가 None이면 False 반환
     pass
     
