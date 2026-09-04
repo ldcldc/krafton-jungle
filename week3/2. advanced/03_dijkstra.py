@@ -72,26 +72,27 @@ def dijkstra(n: int, edges: list, start: int) -> list:
     edges: (u, v, w) 형식 방향 간선 리스트
     start: 출발 정점
     반환: 길이 n 의 거리 리스트 (도달 불가 = float('inf'))
-    """
+    """    
     dist = [INF] * n
     dist[start] = 0
-    
+        
     queue = []
-    heapq.heappush(queue, [0, start])
+    heapq.heappush(queue, (0, start))
     
-    graph = {}
-    
-    for i in range(n):
-        graph[i] = []
-    
+    graph = [[] for _ in range(n)]      # 이렇게 1~n-1까지 꽉차있을 땐 딕셔너리보다 리스트가 빠름
     for u, v, w in edges:
-        graph[u].append([v, w]) 
+        graph[u].append((v, w))
     
     while queue:
-        _, curr_pos = heapq.heappop(queue)
-        for v, w in graph[curr_pos]:
-            heapq.heappush(queue, [w, v])
-            dist[v] = min(dist[v], dist[curr_pos] + w)
+        curr_dist, curr_node = heapq.heappop(queue)
+        
+        if curr_dist > dist[curr_node]:
+            continue
+        
+        for next_node, w in graph[curr_node]:
+            if curr_dist + w < dist[next_node]:
+                dist[next_node] = curr_dist + w
+                heapq.heappush(queue, (dist[next_node], next_node))
     
     return dist
     
