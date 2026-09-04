@@ -27,7 +27,7 @@
         |  \    /   |1
         |   v  /    v
         |    2 ---> 3 ---> 4
-        |    5      3
+        |       5      3
 
     start = 0 일 때 최단 거리:
         0 -> 0 : 0
@@ -64,9 +64,7 @@ dijkstra(n: int, edges: list[tuple[int, int, int]], start: int) -> list
 
 import heapq
 
-
 INF = float('inf')
-
 
 def dijkstra(n: int, edges: list, start: int) -> list:
     """
@@ -75,6 +73,28 @@ def dijkstra(n: int, edges: list, start: int) -> list:
     start: 출발 정점
     반환: 길이 n 의 거리 리스트 (도달 불가 = float('inf'))
     """
+    dist = [INF] * n
+    dist[start] = 0
+    
+    queue = []
+    heapq.heappush(queue, [0, start])
+    
+    graph = {}
+    
+    for i in range(n):
+        graph[i] = []
+    
+    for u, v, w in edges:
+        graph[u].append([v, w]) 
+    
+    while queue:
+        _, curr_pos = heapq.heappop(queue)
+        for v, w in graph[curr_pos]:
+            heapq.heappush(queue, [w, v])
+            dist[v] = min(dist[v], dist[curr_pos] + w)
+    
+    return dist
+    
     # TODO: 인접 리스트 graph 구성 (graph[u] = [(v, w), ...])
     # TODO: dist 를 INF 로 초기화하고 dist[start] = 0
     # TODO: 우선순위 큐(heapq)로 BFS-like 최단경로 탐색

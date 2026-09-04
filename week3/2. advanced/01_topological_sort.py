@@ -39,6 +39,38 @@ def topological_sort(vertices, edges):
     Returns:
         위상 정렬 순서
     """
+    num_entry = {}
+    graph = {}
+    result = []
+    queue = deque()
+    
+    for vertex in range(vertices):
+        num_entry[vertex] = 0
+        graph[vertex] = []
+        
+    for u, v in edges:
+        num_entry[v] += 1
+        graph[u].append(v)
+    
+    for i in range(vertices):
+        if not num_entry[i]:
+            queue.append(i)
+        
+    while queue:
+        curr_vertex = queue.popleft()
+        result.append(curr_vertex)
+        for i in graph[curr_vertex]:
+            num_entry[i] -= 1
+            if not num_entry[i]:
+                queue.append(i)
+    
+    # if len(result) != vertices:     #순환방지
+    #     return []
+    
+    return result
+    
+    
+    
     # TODO: 그래프와 진입 차수 초기화
     pass
     
@@ -48,14 +80,10 @@ def topological_sort(vertices, edges):
     # TODO: 진입 차수가 0인 정점들을 큐에 추가
     pass
     
-    result = []
-    
     # TODO: 큐가 빌 때까지 반복
     ## 큐에서 정점 꺼내기
     ## 인접한 정점들의 진입 차수 감소
     pass
-    
-    return result
 
 # 테스트 케이스
 if __name__ == "__main__":

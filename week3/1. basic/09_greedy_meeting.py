@@ -33,26 +33,37 @@ def select_meetings(meetings):
         (배정된 회의 개수, 선택된 회의 리스트)
     """
     if not meetings:
-        return 0, 0
-    
+       return 0, 0   
+   
     selected = []
-    meetings = sorted(meetings, key=lambda x: x[1])
-    n = len(meetings)
+    meetings = sorted(meetings, key=lambda x: x[1]) 
+    end_time = -1
     
-    
-    def reculsion(index):
-        for i in range(index+1, n):
-            if meetings[index][1] < meetings[i][0]:
-                selected.append(meetings[i])
-                return reculsion(i) + 1
-        return 1
-    selected.append(meetings[0])
-    
-    
-    return reculsion(0), selected
+    for meeting in meetings:
+        start, end = meeting
         
+        if start > end_time:
+            selected.append(meeting)
+            end_time = end
+    return len(selected), selected
+
+
+    # if not meetings:
+    #     return 0, 0
     
+    # selected = []
+    # meetings = sorted(meetings, key=lambda x: x[1])
+    # n = len(meetings)
     
+    # def reculsion(index):
+    #     for i in range(index+1, n):
+    #         if meetings[index][1] < meetings[i][0]:
+    #             selected.append(meetings[i])
+    #             return reculsion(i) + 1
+    #     return 1
+    # selected.append(meetings[0])
+    
+    # return reculsion(0), selected
     
     
     # TODO: 회의가 없으면 0 반환
@@ -67,8 +78,6 @@ def select_meetings(meetings):
     # TODO: 나머지 회의들 확인
     ## 이전 회의가 끝난 후 시작하는 회의만 선택
     pass
-    
-    return len(selected), selected
 
 # 테스트 케이스
 if __name__ == "__main__":
