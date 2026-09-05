@@ -44,9 +44,8 @@ def dfs(graph, start, visited=None):
     """
     if visited is None:
         visited = []
-    isvisit = [False] * len(graph)      # or isvisit = set(visited)
-    
-    
+    isvisit = [False] * len(graph)      # or isvisit = set()
+
     def _dfs(node):
         visited.append(node)
         isvisit[node] = True
