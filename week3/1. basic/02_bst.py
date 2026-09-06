@@ -51,6 +51,7 @@ def search_bst(root, target):
         True/False
     """
     curr_node = root
+    
     while curr_node:
         if curr_node.value > target:
             curr_node = curr_node.left
