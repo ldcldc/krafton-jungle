@@ -42,7 +42,7 @@ def select_meetings(meetings):
     for meeting in meetings:
         start, end = meeting
         
-        if start > end_time:
+        if start >= end_time:
             selected.append(meeting)
             end_time = end
     return len(selected), selected

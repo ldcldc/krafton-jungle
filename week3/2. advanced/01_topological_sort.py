@@ -39,22 +39,16 @@ def topological_sort(vertices, edges):
     Returns:
         위상 정렬 순서
     """
-    num_entry = {}
-    graph = {}
     result = []
-    queue = deque()
     
-    for vertex in range(vertices):
-        num_entry[vertex] = 0
-        graph[vertex] = []
+    num_entry = {i:0 for i in range(vertices)}
+    graph = {i:[] for i in range(vertices)}
         
     for u, v in edges:
         num_entry[v] += 1
         graph[u].append(v)
     
-    for i in range(vertices):
-        if not num_entry[i]:
-            queue.append(i)
+    queue = deque(i for i in range(vertices) if not num_entry[i])
         
     while queue:
         curr_vertex = queue.popleft()
