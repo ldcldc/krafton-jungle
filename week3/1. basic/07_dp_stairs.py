@@ -55,10 +55,8 @@ def climb_stairs(n):
         
     return dp[n]
     
-    
     # TODO: 특별한 경우 처리
     pass
-    
     
     # TODO: dp 배열 생성 및 초기화
     pass

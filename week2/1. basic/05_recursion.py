@@ -64,12 +64,12 @@ def fibonacci(n):
     #     fib.append(fib[i-1] + fib[i-2])
     # return fib[n]
 
-    # fib_1, fib_2 = 0, 1
-    # if n < 2:
-    #      return n
-    # for _ in range(2, n+1):
-    #     fib_1, fib_2 = fib_2, fib_1 + fib_2
-    # return fib_2
+    fib_1, fib_2 = 0, 1
+    if n < 2:
+         return n
+    for _ in range(2, n+1):
+        fib_1, fib_2 = fib_2, fib_1 + fib_2
+    return fib_2
 
     if n <= 1:
         return n
