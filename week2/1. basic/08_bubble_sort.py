@@ -60,18 +60,18 @@ def bubble_sort_optimized(arr):
     Returns:
         정렬된 배열
     """
-    # n = len(arr)
-    # end = n-1
+    n = len(arr)
+    end = n-1
     
-    # while end > 0:
-    #     last_swap = 0
-    #     for i in range(end):
-    #         if arr[i] > arr[i+1]:
-    #             arr[i],arr[i+1] = arr[i+1],arr[i]
-    #             last_swap = i
-    #     end = last_swap
+    while end > 0:
+        last_swap = 0
+        for i in range(end):
+            if arr[i] > arr[i+1]:
+                arr[i],arr[i+1] = arr[i+1],arr[i]
+                last_swap = i
+        end = last_swap
     
-    # return arr
+    return arr
     
     n = len(arr)
     

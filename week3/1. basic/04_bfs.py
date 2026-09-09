@@ -44,6 +44,8 @@ def bfs(graph, start):
         방문 순서 리스트
     """
     visited = []
+    
+    
     isvisit = [False] * len(graph)
     isvisit[start] = True
     

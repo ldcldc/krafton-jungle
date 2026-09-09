@@ -69,7 +69,6 @@ def inorder(root):
     result = []
     
     def reculsion(node):
-        
         if node.left is not None:
             reculsion(node.left)
         result.append(node.value)
